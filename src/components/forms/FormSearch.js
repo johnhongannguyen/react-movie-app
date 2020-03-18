@@ -22,21 +22,21 @@ const useStyles = makeStyles(theme =>({
       },
 
 }));
-const FormSearch = () => {
+const FormSearch = (props) => {
     const classes = useStyles()
     return (
         <div>
-            <form className={classes.form} onSubmit={this.props.onSubmit}>
+            <form className={classes.form} onSubmit={props.onSubmit}>
         <TextField 
             className={classes.TextField}
             label='Search'
             margin='normal'
             name='query'
             variant='outlined'
-            onChange ={event => this.props.onSearchChange(event.target.value)}
+            onChange ={event => props.onSearchChange(event.target.value)}
             fullWidth
         />
-        <SearchOptions onChangeSearchType={this.props.onChangeSearchType} category={this.props.category}/>
+        <SearchOptions onChangeSearchType={props.onChangeSearchType} category={props.category}/>
         <Button className={classes.btn} type='submit' variant='contained' color='primary' >Search</Button>
             </form>
         </div>

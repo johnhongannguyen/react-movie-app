@@ -11,7 +11,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 // import {TabP} from "@material-ui/core"
 
-const TabsNavigation = props =>{
+const TabsNavigation = props => {
     const { children, value, index, ...other } = props;
     return(
         <Typography
@@ -65,7 +65,7 @@ TabPanel.propTypes = {
     },
   }));
   
- function SimpleTabs() {
+ function SimpleTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
   

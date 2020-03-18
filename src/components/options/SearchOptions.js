@@ -17,11 +17,11 @@ const useStyles = makeStyles(theme =>({
 const SearchOptions = props =>{
     const classes = useStyles();
 
-    const inputLabel = React.useRef(null);
+    // const inputLabel = React.useRef(input-label);
     const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-      }, []);
+    // React.useEffect(() => {
+    //     setLabelWidth(inputLabel.current.offsetWidth);
+    //   }, []);
     
     return(
         <FormControl className={classes.formControl}>
@@ -33,9 +33,9 @@ const SearchOptions = props =>{
             onChange={event => props.onChangeSearchType(event.target.value)}
             labelWidth={labelWidth}>
         
-            <MenuItem value='TV'>TV</MenuItem>
-             <MenuItem value='Movies'>Movies</MenuItem>
-            <MenuItem value='Multi'>Multi</MenuItem>  
+            <MenuItem value='tv'>TV</MenuItem>
+             <MenuItem value='movie'>Movies</MenuItem>
+            <MenuItem value='multi'>Multi</MenuItem>  
           </Select>
         </FormControl>
     )
