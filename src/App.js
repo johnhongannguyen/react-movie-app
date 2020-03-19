@@ -9,30 +9,30 @@ class App extends Component {
   state = {
     isLoading: true,
     query: "",
-    searchData: [],
+    searchDatas: [],
     searchPin: false,
-    searchType: "tv"
+    category: "tv"
   }
-  handleChangeSearchType = searchType =>{
+  handleChangeSearchType = category =>{
     this.setState({
-      searchType
+      category
     })
   }
 
   handleSubmit = event =>{
-    const {searchType, query} = this.state; 
+    const {category, query} = this.state; 
     event.preventDefault();
     this.setState({
-      isLoading: true,
+      isLoading: true
     
     });
 
-    api_search(searchType, query)
+    api_search(category, query)
     .then(data =>{
     this.setState({
       isLoading: false,
       seachPin: true,
-      searchData: data
+      searchDatas: data
    })
   })
   }
@@ -47,23 +47,23 @@ class App extends Component {
     const {
       category,
       searchPin, 
-      searchData, 
+      searchDatas, 
       query
     } = this.setState;
   return (
     <Container>
-  <Header />
-    <FormSearch 
+     <Header />
+      <FormSearch 
       category = {category}
       onSubmit = {this.handleSubmit}
       onSearchChange = {this.handleSearchChange}
       onChangeSearchType = {this.handleChangeSearchType}
     />
 
-    <TabsNavigation
+      <TabsNavigation
     query={query}
     searchPin = {searchPin}
-    searchData = {searchData} 
+    searchDatas = {searchDatas} 
     />
 
 

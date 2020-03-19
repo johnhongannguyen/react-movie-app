@@ -9,7 +9,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-// import {TabP} from "@material-ui/core"
 
 const TabsNavigation = props => {
     const { children, value, index, ...other } = props;
@@ -28,22 +27,22 @@ const TabsNavigation = props => {
 
 }
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+// function TabPanel(props) {
+//   const { children, value, index, ...other } = props;
 
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
+//   return (
+//     <Typography
+//       component="div"
+//       role="tabpanel"
+//       hidden={value !== index}
+//       id={`full-width-tabpanel-${index}`}
+//       aria-labelledby={`full-width-tab-${index}`}
+//       {...other}
+//     >
+//       {value === index && <Box p={3}>{children}</Box>}
+//     </Typography>
+//   );
+// }
 
 TabPanel.propTypes = {
     children: PropTypes.node,
@@ -65,7 +64,7 @@ TabPanel.propTypes = {
     },
   }));
   
- function SimpleTabs(props) {
+ function TabPanel (props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
   

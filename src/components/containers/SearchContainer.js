@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Container from "@material-ui/core/Container";
 import SearchItem from '../layout/SearchItem'
 import Typography from "@material-ui/core/Typography";
@@ -14,7 +14,7 @@ const SearchContainer = props =>{
         return(
             <Typography> Please enter a search</Typography>
         )
-    }else if(query && searchDatas.length == 0 && searchPin){
+    }else if(query && searchDatas.length === 0 && searchPin){
         return(
             <Typography>Sorry, there were no results</Typography>
         )
@@ -22,7 +22,7 @@ const SearchContainer = props =>{
 
     return (
         <Container>
-            {!searchPin ||searchDatas.length == 0 ? <Typography>{result}</Typography> : 
+            {!searchPin ||searchDatas.length === 0 ? <Typography>{result}</Typography> : 
             <SearchItem searchDatas={searchDatas} />}
 
         </Container>

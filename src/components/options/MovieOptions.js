@@ -35,7 +35,7 @@ const MovieOptions = props =>{
         
             <MenuItem value='now_playing'>Now Playing</MenuItem>
              <MenuItem value='popular'>Popular</MenuItem>
-             <MenuItem value='top_related'>Top Related</MenuItem>
+             <MenuItem value='top_rated'>Top Rated</MenuItem>
             <MenuItem value='upcoming'>UpComing</MenuItem>  
           </Select>
         </FormControl>

@@ -9,7 +9,7 @@ class MovieContainer extends Component {
     state ={
         isLoading: true,
         category: 'popular',
-        movieData: []
+        movieDatas: []
     }
 
     handleChange = category =>{
@@ -19,7 +19,7 @@ class MovieContainer extends Component {
         api_movies(this.state.category)
         .then(data =>{
             this.setState({
-                movieData: data,
+                movieDatas: data,
                 isLoading: false
             })
         })
@@ -30,12 +30,12 @@ class MovieContainer extends Component {
         this.getMovies();
     }
     render(){
-        const {movieData, isLoading, category} = this.state;
+        const {movieDatas, isLoading, category} = this.state;
         return(
             <Container>
                 <MovieOptions onChange={this.handleChange} category={category} />
 
-                <div>{isLoading ? <Loading /> : <MovieItem movieDatas={movieData} />}</div>
+                <div>{isLoading ? <Loading /> : <MovieItem movieDatas={movieDatas} />}</div>
             </Container>
         )
     }

@@ -18,7 +18,7 @@ const SearchOptions = props =>{
     const classes = useStyles();
 
     // const inputLabel = React.useRef(input-label);
-    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [labelWidth] = React.useState(0);
     // React.useEffect(() => {
     //     setLabelWidth(inputLabel.current.offsetWidth);
     //   }, []);

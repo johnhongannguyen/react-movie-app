@@ -51,7 +51,7 @@ const CardItem = props =>{
           <CardContent className={classes.cardContent1}>
               <CardMedia item>
                   <img className={classes.imgRoot} 
-                        src={logoPath} />
+                        src={logoPath}> </img>
 
               </CardMedia>
           </CardContent>
