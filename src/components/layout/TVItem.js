@@ -5,8 +5,8 @@ import Container from "@material-ui/core/Container";
 const TVItem = props =>{
     return (
         <Container className="tv-item">
-            {props.tvDatas.map( tvData =>{
-                const {id, name, poster_path, first_air_day, overview, popularity} = tvData
+            {props.arrayTVShows.map( show =>{
+                const {id, name, poster_path, first_air_day, overview, popularity} = show
                 return <CardItem 
                 id={id}
                 name={name}

@@ -9,7 +9,7 @@ class TVContainer extends Component {
     state ={
         isLoading: true,
         category: 'on_the_air',
-        tvDatas: []
+        arrayTVShows: []
     }
 
     handleChange = category =>{
@@ -20,7 +20,7 @@ class TVContainer extends Component {
         api_tvShows(this.state.category)
         .then(data =>{
             this.setState({
-                tvDatas: data,
+                arrayTVShows: data,
                 isLoading: false
             })
         })
@@ -31,12 +31,12 @@ class TVContainer extends Component {
     }
     
     render(){
-        const {tvDatas, category, isLoading} = this.state;
+        const {arrayTVShows, category, isLoading} = this.state;
         return(
             <Container>
                 <TVOptions onChange={this.handleChange} category={category} />
 
-                <div>{isLoading ? <Loading /> : <TVItem tvDatas={tvDatas} />}</div>
+                <div>{isLoading ? <Loading /> : <TVItem arrayTVShows={arrayTVShows} />}</div>
             </Container>
 
         )

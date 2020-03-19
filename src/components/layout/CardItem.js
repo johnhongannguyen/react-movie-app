@@ -38,12 +38,12 @@ const CardItem = props =>{
             first_air_date} = props
     const dateShowing = release_date ? release_date : first_air_date
 
-    let logoPath
+    let logo_path
 
   if(poster_path){
-    logoPath = "https://image.tmdb.org/t/p/w500/" + poster_path
+    logo_path = "https://image.tmdb.org/t/p/w500/" + poster_path
   }else{
-    logoPath = 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
+    logo_path = 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
   }
 
   return(
@@ -51,12 +51,12 @@ const CardItem = props =>{
           <CardContent className={classes.cardContent1}>
               <CardMedia item>
                   <img className={classes.imgRoot} 
-                        src={logoPath}> </img>
+                        src={logo_path}> </img>
 
               </CardMedia>
           </CardContent>
 
-          <CardContent>
+          <CardContent className={classes.cardContent2}>
               <Typography>
                 <Box >{title || name}</Box>
               </Typography>

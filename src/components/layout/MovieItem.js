@@ -5,8 +5,8 @@ import Container from "@material-ui/core/Container";
 const MovieItem = props =>{
     return (
         <Container className="movie-item">
-            {props.movieDatas.map( movieData =>{
-                const {id, title, poster_path, release_date, overview, popularity} = movieData
+            {props.arrayMovies.map( movie =>{
+                const {id, title, poster_path, release_date, overview, popularity} = movie
                 return <CardItem 
                 id={id}
                 title={title}
