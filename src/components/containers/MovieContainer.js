@@ -2,43 +2,64 @@ import React, { Component } from "react";
 import MovieItem from "../layout/MovieItem";
 import Loading from "../layout/Loading";
 import MovieOptions from "../options/MovieOptions";
-import api_movies from "../../services/api_movies";
-import Container from "@material-ui/core/Container";
+import { getMovies } from "../../services/api_movies";
+import Card from '@material-ui/core/Card';
+
+
 
 class MovieContainer extends Component {
-    state ={
-        isLoading: true,
-        category: 'popular',
-        arrayMovies: []
-    }
+  state = {
+    arrayMovies: [],
+    category: "popular",
+    isLoading: true
+   };
 
-    handleChange = category =>{
-        this.setState({category}, this.getMovies);
-}
-    getMovies = () =>{
-        api_movies(this.state.category)
-        .then(data =>{
-            this.setState({
-                arrayMovies: data,
-                isLoading: false
-            })
-        })
-    };
+  pullMovies = () => {
+    getMovies(this.state.category)
+    .then(data => {
+      this.setState({
+        isLoading: false,
+        arrayMovies: data
+      });
+     console.log(`Movie Objects : ${data}`);
+    });
+    
+  };
+  handleSearchMovieChange = category => {
+    this.setState(
+      {category},
+      this.pullMovies
+    );
+    console.log(`Type of movie selected : ${category}`)
+  };
+  componentDidMount() {
+    this.setState({
+      isLoading: true
+    });
+    this.pullMovies();
+   
+  }
 
-    componentDidMount(){
-        this.setState({isLoading:true});
-        this.getMovies();
+  render() {
+    const { isLoading, arrayMovies, category } = this.state;
+    const getStyles ={
+      display:'flex', 
+      flexDirection:'column', 
+      alignItems:'center',
+      margin:'auto',
+      justifyContent:'space-between'
     }
-    render(){
-        const {arrayMovies, isLoading, category} = this.state;
-        return(
-            <Container>
-                <MovieOptions onChange={this.handleChange} category={category} />
-
-                <div>{isLoading ? <Loading /> : <MovieItem arrayMovies={arrayMovies} />}</div>
-            </Container>
-        )
-    }
+    return (
+      <div className="movie_container">
+        <Card> 
+        <div style={getStyles}>
+          <MovieOptions category={category} onSearchMovieChange={this.handleSearchMovieChange}/>
+        </div>
+        <div>{isLoading ? <Loading /> : <MovieItem arrayMovies={arrayMovies} />}</div>
+        </Card> 
+      </div>
+    );
+  }
 }
 
 export default MovieContainer;

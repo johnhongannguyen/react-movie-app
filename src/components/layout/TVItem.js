@@ -1,25 +1,35 @@
-import React from 'react'; 
-import CardItem from './CardItem';
-import Container from "@material-ui/core/Container";
+import React from "react";
+import CardItem from "./CardItem";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from '@material-ui/core/Card'
 
-const TVItem = props =>{
-    return (
-        <Container className="tv-item">
-            {props.arrayTVShows.map( show =>{
-                const {id, name, poster_path, first_air_day, overview, popularity} = show
-                return <CardItem 
-                id={id}
-                name={name}
-                poster_path={poster_path}
-                first_air_day={first_air_day}
-                overview={overview}
-                popularity={popularity}
-                 />
-            })}
+const useStyles = makeStyles({
+  tv_container: {
+    margin: "1rem",
+    padding: "1rem", 
+    
+  }
+});
 
-        </Container>
 
-    );
-}
+const TVItem = props => {
+  const classes = useStyles();
+  return (
+    <Card className={classes.tv_container}>
+      {props.arrayShows.map(show => {
+        const { name, id, poster_path, popularity, first_air_date, overview } = show;
+        return <CardItem   
+        name={name} 
+        id={id} 
+        poster_path={poster_path}
+        popularity={popularity}
+        first_air_date={first_air_date}
+        overview={overview}
+        />;
+      })}
+
+    </Card>
+  );
+};
 
 export default TVItem;

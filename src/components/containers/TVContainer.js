@@ -1,47 +1,70 @@
 import React, { Component } from "react";
 import TVItem from "../layout/TVItem";
 import Loading from "../layout/Loading";
+import { getShows } from "../../services/api_tvShows";
 import TVOptions from "../options/TVOptions";
-import api_tvShows from "../../services/api_tvShows";
-import Container from "@material-ui/core/Container";
+import Card from '@material-ui/core/Card';
 
 class TVContainer extends Component {
-    state ={
-        isLoading: true,
-        category: 'on_the_air',
-        arrayTVShows: []
-    }
+  state = {
+    isLoading: true,
+    arrayShows: [],
+    category: "popular"
+  };
 
-    handleChange = category =>{
-        this.setState({category},this.getTV);
-    }
-
-    getTV = () =>{
-        api_tvShows(this.state.category)
-        .then(data =>{
-            this.setState({
-                arrayTVShows: data,
-                isLoading: false
-            })
-        })
-    };
-    componentDidMount(){
-        this.setState({isLoading:true});
-        this.getTV();
-    }
+  pullShows = () => {
+    getShows(this.state.category).then(data => {
+      this.setState({
+        isLoading: false,
+        arrayShows: data
+      });
+      console.log(`TV Objects : ${data}`);
+    });
     
-    render(){
-        const {arrayTVShows, category, isLoading} = this.state;
-        return(
-            <Container>
-                <TVOptions onChange={this.handleChange} category={category} />
+  };
 
-                <div>{isLoading ? <Loading /> : <TVItem arrayTVShows={arrayTVShows} />}</div>
-            </Container>
+  handleSearchShowChange = category => {
+    this.setState(
+      {category},
+      this.pullShows
+    );
+    console.log(`Type of show selected : ${category}`)
+  };
 
-        )
+  componentDidMount() {
+    this.setState({
+      isLoading: true
+    });
+
+    this.pullShows();
+  }
+
+  render() {
+    const { isLoading, arrayShows, category } = this.state;
+    const getStyles ={
+      display:'flex', 
+      flexDirection:'column', 
+      alignItems:'center',
+      margin:'auto',
+      justifyContent:'space-between'
     }
-
+    return (
+      <>
+      <div className="tv_container" >
+        <Card>
+          <div style={getStyles}>
+        <TVOptions
+            category={category}
+            onSearchShowChange={this.handleSearchShowChange}
+          />
+          </div>
+        <div>{isLoading ? <Loading /> : <TVItem arrayShows={arrayShows} />}</div>
+        </Card>
+      </div>
+     
+      </>
+    );
+  }
 }
 
 export default TVContainer;

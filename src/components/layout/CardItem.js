@@ -1,72 +1,93 @@
-import React from 'react';
+import React from "react";
 import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
-import CardContent from "@material-ui/core/CardContent";
+import { Box ,Typography } from "@material-ui/core"
 import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Box from '@material-ui/core/Box';
+import CardContent from "@material-ui/core/CardContent";
 
 
-const useStyles = makeStyles({
-    card:{
-        display: "flex",
-        alignItems: "center",
-        marginBottom: "1rem"
-    },
-    cardContent1: {
-        width: "40%",
-        padding: 0
-      },
-      cardContent2: {
-        width: "60%"
-      },
-      imgRoot :{
-        height: '250px',
-        width:'100%',
-        maxWidth:'170px'
-      }
-});
-const CardItem = props =>{
-    const classes = useStyles();
-    const { title, 
-            id, 
-            poster_path, 
-            popularity, 
-            release_date, 
-            overview, 
-            name, 
-            first_air_date} = props
-    const dateShowing = release_date ? release_date : first_air_date
-
-    let logo_path
-
-  if(poster_path){
-    logo_path = "https://image.tmdb.org/t/p/w500/" + poster_path
-  }else{
-    logo_path = 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
+const getStyles = makeStyles({
+  media: {
+    height: '280px',
+    width:'100%',
+    maxWidth:'185px'
+  },
+  root:{
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "1rem"
+  },
+  cardImg: {
+    width: "20%",
+    padding: 0
+  },
+  cardInfo: {
+    width: "80%"
   }
+})
 
-  return(
-      <Card className={classes.card} key={id}>
-          <CardContent className={classes.cardContent1}>
-              <CardMedia item>
-                  <img className={classes.imgRoot} 
-                        src={logo_path}> </img>
+const CardItem = props => {
 
-              </CardMedia>
+  const {title, 
+          id, 
+          poster_path, 
+          popularity, 
+          release_date, 
+          overview, name, 
+          first_air_date } = props
+  
+  const checkDate = release_date ? release_date : first_air_date
+  
+  let logo_img 
+  if(poster_path){
+    logo_img = "https://image.tmdb.org/t/p/w500/"  + poster_path
+  }else{
+    logo_img = 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
+  }
+  const classes = getStyles()
+  return (
+    <>
+      <Card key={id} className={classes.root}>
+        <CardContent className={classes.cardImg}
+        container direction="row" 
+        justify="flex-start" 
+        alignItems="center" 
+        spacing={2}>
+          <CardMedia item className={classes.media} 
+            src={logo_img} component="img" >
+          </CardMedia>
           </CardContent>
+          
+          <CardContent className={classes.cardInfo}>
+           <Typography 
+              gutterBottom 
+              variant='h5' 
+              component='h2'>
+                <Box textAlign='center'>
+                  {title || name}
+                </Box>
+              </Typography>
+              <Typography 
+              gutterBottom 
+              variant='body2' 
+              color='textSecondary' 
+              component='p'>
+                <Box textAlign='center' marginBottom='2rem'>
+                  Release Date : {checkDate} | Popularity: {popularity}
+                </Box>
+              </Typography>
+              <Typography 
+              gutterBottom 
+              variant='body2' 
+              color='textSecondary' 
+              component='p'>
+                {overview}
+              </Typography>
+            </CardContent>
+        </Card>
 
-          <CardContent className={classes.cardContent2}>
-              <Typography>
-                <Box >{title || name}</Box>
-              </Typography>
-              <Typography>
-                <Box >Release Date:{dateShowing} | Popularity: {popularity}</Box>
-              </Typography>
-              <Typography>{overview}</Typography>
-          </CardContent>
-      </Card>
+        </>
   )
 }
 
-export default CardItem;
+export default CardItem

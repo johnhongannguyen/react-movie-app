@@ -1,76 +1,80 @@
-import React, {Component} from 'react';
-import Header from './components/layout/Header'
-import Container from '@material-ui/core/Container';
-import api_search from './services/api_search'
-import FormSearch from './components/forms/FormSearch'
-import TabsNavigation from './components/tabs-navigation/TabsNavigation'
+import React, { Component } from "react";
+import { getSearchs } from './services/api_search'
+import FormSearch from "./components/forms/FormSearch";
+import TabsNavigation from "./components/tabs-navigation/TabsNavigation";
+import Header from "./components/layout/Header"
 
 class App extends Component {
   state = {
     isLoading: true,
-    query: "",
-    searchDatas: [],
-    searchPin: false,
-    category: "tv"
-  }
-  handleChangeSearchType = category =>{
-    this.setState({
-      category
-    })
-  }
+    arrayResults: [],
+    searchPoint: false,
+    query: '',
+    category: 'movie'
+   
+  };
 
-  handleSubmit = event =>{
-    const {category, query} = this.state; 
+  pullSearch = event => {
+    const { category, query } = this.state;
     event.preventDefault();
     this.setState({
       isLoading: true
-    
     });
 
-    api_search(category, query)
-    .then(data =>{
-    this.setState({
-      isLoading: false,
-      seachPin: true,
-      searchDatas: data
-   })
-  })
-  }
-  handleSearchChange = query =>{
+    getSearchs(category, query).then(data => {
+    
+      this.setState({
+        searchPoint: true,
+        arrayResults: data,
+        isLoading: false
+      });
+     
+    });
+    console.log('get search success ');
+  };
+
+  handleSearchInputChange = query => {
     if(query){
-      this.setState({query})
+      this.setState({
+        query
+      })
     }
   }
+
+  handleSearchTypeChange = category => {
+    this.setState({
+      category
+    })
+    console.log('Search Type:', category);
   
+  };
 
-  render(){
-    const {
-      category,
-      searchPin, 
-      searchDatas, 
-      query
-    } = this.setState;
-  return (
-    <Container>
-     <Header />
-      <FormSearch 
-      category = {category}
-      onSubmit = {this.handleSubmit}
-      onSearchChange = {this.handleSearchChange}
-      onChangeSearchType = {this.handleChangeSearchType}
-    />
-
-      <TabsNavigation
-    query={query}
-    searchPin = {searchPin}
-    searchDatas = {searchDatas} 
-    />
-
-
-  </Container>
-  );
-}
+  render() {
+    const { searchPoint, query, arrayResults, category } = this.state;
+    const getStyles ={
+      border:'1px solid gray', 
+      marginLeft:'30px', 
+      marginRight: '30px', 
+      marginTop:'3rem'
+  }
+    
+    return (
+     <div>
+        <Header />
+        
+        <FormSearch
+          onSearchInputChange={this.handleSearchInputChange}
+          onSearchTypeChange={this.handleSearchTypeChange}
+          onSubmit={this.pullSearch}
+          category={category}
+        />
+        
+        <div style={getStyles}>
+          <TabsNavigation  arrayResults={arrayResults} query={query} searchPoint={searchPoint}  />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
-
