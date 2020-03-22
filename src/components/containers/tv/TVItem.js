@@ -18,11 +18,12 @@ const TVItem = props => {
     <Card className={classes.tv_container}>
       {props.arrayShows.map(show => {
         const { name, id, poster_path, popularity, first_air_date, overview } = show;
-        return <CardItem   
-        name={name} 
-        id={id} 
+        return <CardItem 
+        key={id}
+        id={id}   
+        name={name}
+        popularity={popularity} 
         poster_path={poster_path}
-        popularity={popularity}
         first_air_date={first_air_date}
         overview={overview}
         />;

@@ -18,8 +18,9 @@ const MovieItem = props => {
     {props.arrayMovies.map(movie => {
         const { title, id, poster_path, popularity, release_date, overview } = movie;
         return <CardItem 
-        title={title} 
         id={id} 
+        key={id}
+        title={title} 
         poster_path={poster_path}
         popularity={popularity}
         release_date={release_date}

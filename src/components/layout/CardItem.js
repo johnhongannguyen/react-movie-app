@@ -29,21 +29,24 @@ const getStyles = makeStyles({
 const CardItem = props => {
 
   const {title, 
+          name, 
           id, 
           poster_path, 
-          popularity, 
           release_date, 
-          overview, name, 
-          first_air_date } = props
+          first_air_date, 
+          popularity, 
+          overview
+          } = props
   
   const checkDate = release_date ? release_date : first_air_date
   
-  let logo_img 
+  let sourceImg = () =>{
   if(poster_path){
-    logo_img = "https://image.tmdb.org/t/p/w500/"  + poster_path
+    return "https://image.tmdb.org/t/p/w500/"  + poster_path
   }else{
-    logo_img = 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
+    return 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
   }
+}
   const classes = getStyles()
   return (
     <>
@@ -54,7 +57,7 @@ const CardItem = props => {
         alignItems="center" 
         spacing={2}>
           <CardMedia item className={classes.media} 
-            src={logo_img} component="img" >
+            src={sourceImg()} component="img" >
           </CardMedia>
           </CardContent>
           
