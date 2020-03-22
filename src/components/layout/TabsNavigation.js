@@ -1,7 +1,7 @@
 import React from "react";
-import MovieContainer from "../containers/MovieContainer";
-import SearchContainer from "../containers/SearchContainer";
-import TVContainer from "../containers/TVContainer";
+import MovieContainer from "../containers/movie/MovieContainer";
+import SearchContainer from "../containers/search/SearchContainer";
+import TVContainer from "../containers/tv/TVContainer";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";

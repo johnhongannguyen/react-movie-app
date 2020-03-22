@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import TVItem from "../layout/TVItem";
-import Loading from "../layout/Loading";
-import { getShows } from "../../services/api_tvShows";
-import TVOptions from "../options/TVOptions";
+import TVItem from "./TVItem";
+import Loading from "../../layout/Loading";
+import { getShows } from "../../../services/api_tvShows";
+import TVOptions from "./TVOptions";
 import Card from '@material-ui/core/Card';
 
 class TVContainer extends Component {

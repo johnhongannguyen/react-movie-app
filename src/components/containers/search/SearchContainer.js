@@ -1,5 +1,5 @@
 import React from "react";
-import SearchItem from "../layout/SearchItem";
+import SearchItem from "./SearchItem";
 import Typography from "@material-ui/core/Typography";
 
 

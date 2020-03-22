@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getSearchs } from './services/api_search'
-import FormSearch from "./components/forms/FormSearch";
-import TabsNavigation from "./components/tabs-navigation/TabsNavigation";
+import FormSearch from "./components/form/FormSearch";
+import TabsNavigation from "./components/layout/TabsNavigation";
 import Header from "./components/layout/Header"
 
 class App extends Component {

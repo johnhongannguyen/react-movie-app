@@ -1,35 +1,36 @@
 import React from "react";
-import CardItem from "./CardItem";
+import CardItem from "../../layout/CardItem";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card'
 
 const useStyles = makeStyles({
-  tv_container: {
+  searchItem_container: {
     margin: "1rem",
     padding: "1rem", 
     
   }
 });
 
-
-const TVItem = props => {
+const SearchItem = props => {
   const classes = useStyles();
   return (
-    <Card className={classes.tv_container}>
-      {props.arrayShows.map(show => {
-        const { name, id, poster_path, popularity, first_air_date, overview } = show;
-        return <CardItem   
-        name={name} 
+    <Card className={classes.searchItem_container}>
+      {props.arrayResults.map(result => {
+        const { title, name, id, poster_path, popularity, release_date, first_air_date, overview } = result;
+        return <CardItem 
+        name={name}
+        title={title} 
         id={id} 
         poster_path={poster_path}
         popularity={popularity}
+        release_date={release_date}
         first_air_date={first_air_date}
         overview={overview}
         />;
       })}
-
+    
     </Card>
   );
 };
 
-export default TVItem;
+export default SearchItem;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import MovieItem from "../layout/MovieItem";
-import Loading from "../layout/Loading";
-import MovieOptions from "../options/MovieOptions";
-import { getMovies } from "../../services/api_movies";
+import MovieItem from "./MovieItem";
+import Loading from "../../layout/Loading";
+import MovieOptions from "./MovieOptions";
+import { getMovies } from "../../../services/api_movies";
 import Card from '@material-ui/core/Card';
 
 
