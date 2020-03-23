@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 
 const getStyles = makeStyles({
-  media: {
+  img: {
     height: '280px',
     width:'100%',
     maxWidth:'185px'
@@ -56,7 +56,7 @@ const CardItem = props => {
         justify="flex-start" 
         alignItems="center" 
         spacing={2}>
-          <CardMedia item className={classes.media} 
+          <CardMedia item className={classes.img} 
             src={sourceImg()} component="img" >
           </CardMedia>
           </CardContent>
