@@ -11,9 +11,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
 }));
 
 export default function TVOptions(props) {
@@ -28,10 +25,8 @@ export default function TVOptions(props) {
   return (
     <>
       <FormControl className={classes.formControl} variant='outlined'>
-        <InputLabel ref={inputLabel} id="demo-simple-select-label">Category</InputLabel>
+        <InputLabel ref={inputLabel}>Category</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           value={props.category}
           onChange={event => props.onSearchShowChange(event.target.value)}
           labelWidth={labelWidth}

@@ -9,15 +9,10 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+  }
 }));
-
-export default function MovieOptions(props) {
+ const MovieOptions = (props) => {
   const classes = useStyles();
-
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   
@@ -32,7 +27,7 @@ export default function MovieOptions(props) {
         <Select
           value={props.category}
           onChange={event => props.onSearchMovieChange(event.target.value)}
-          labelWidth={labelWidth}
+          labelWidth={labelWidth} 
         >
           <MenuItem value='now_playing'>now_playing</MenuItem>
           <MenuItem value='popular'>popular</MenuItem>
@@ -43,3 +38,5 @@ export default function MovieOptions(props) {
     </>
   );
 }
+
+export default MovieOptions

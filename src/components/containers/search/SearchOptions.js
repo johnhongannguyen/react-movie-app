@@ -10,14 +10,10 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
 }));
 
-const SearchOptions = props => {
+const SearchOptions = (props) => {
     const classes = useStyles();
-
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -27,13 +23,12 @@ const SearchOptions = props => {
     return (
       <>
         <FormControl className={classes.formControl} variant='outlined'>
-          <InputLabel ref={inputLabel} id="demo-simple-select-label">Search Type</InputLabel>
+          <InputLabel ref={inputLabel} >Search Type</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+           labelWidth={labelWidth}
             value={props.category}
-            onChange={e => props.onSearchTypeChange(e.target.value)}
-            labelWidth={labelWidth}
+            onChange={event => props.onSearchTypeChange(event.target.value)}
+           
           >
             <MenuItem value='multi'>Multi</MenuItem>
             <MenuItem value='movie'>Movies</MenuItem>
